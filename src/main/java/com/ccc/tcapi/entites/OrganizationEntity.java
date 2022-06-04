@@ -47,6 +47,18 @@ public class OrganizationEntity {
     @Column(name = "UpdatedBy", nullable = true)
     private String updatedBy;
 
+    @OneToMany(targetEntity = OrgCourseEntity.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "OrgRowID", referencedColumnName = "orgRowID")
+    private List<OrgCourseEntity> courses = new ArrayList<>();
+
+    public List<OrgCourseEntity> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<OrgCourseEntity> courses) {
+        this.courses = courses;
+    }
+
     @OneToMany(targetEntity = UserEntity.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "OrgRowID", referencedColumnName = "orgRowID")
     private List<UserEntity> users = new ArrayList<>();
